@@ -1,7 +1,7 @@
 @echo off
 set PYTHONIOENCODING=UTF-8
 set CURRENT_DIR=%~dp0
-set CHECK_SCRIPT=%CURRENT_DIR%/rendersetting_check.py
+set CHECK_SCRIPT=%CURRENT_DIR%/version_check.py
 set MAYAFILE=%1
 call %CURRENT_DIR%/env.bat
 set MAYA_INSTALL=%MAYA_INSTALL:"=%

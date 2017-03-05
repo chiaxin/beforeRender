@@ -20,12 +20,12 @@ def main(check_maya_file):
 			'Failed because Maya file was not found! - %s'%(check_maya_file))
 		return -1
 	logging.info('START CHECK - %s'%(check_maya_file))
-	mc.file(check_maya_file, open=True, pmt=False)
-	logging.info('# Maya version : %s'%(mc.about(v=True)))
-	logging.info('# Mental Ray Version : %s'%(
-		mc.pluginInfo('Mayatomr', q=True, v=True)))
+	mc.file(check_maya_file, open=True)
 	# Check reference relationship
 	for reference in mc.ls(type='reference'):
+		if reference == '_UNKNOWN_REF_NODE_':
+			logging.warning('Got Unknown Reference Node!')
+			continue
 		if reference == 'sharedReferenceNode':
 			continue
 		logging.info('Check refernece - %s'%(reference))

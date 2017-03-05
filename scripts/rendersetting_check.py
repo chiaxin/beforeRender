@@ -12,16 +12,18 @@ import maya.standalone
 import maya.cmds as mc
 maya.standalone.initialize()
 
+RENDERABLE_CAM = ('shotCamShape', )
 logging.basicConfig(level=logging.INFO, format='\n[%(levelname)s] - %(message)s\n')
 
 def check_camera():
 	'''
 	Check just only "shotCam" is launch
 	'''
+	global RENDERABLE_CAM
 	cameraShapes = mc.ls(type='cameraShape')
 	for camera in cameraShapes:
 		if mc.getAttr(camera+'.renderable') \
-		and camera != 'shotCamShape':
+		and camera not in RENDERABLE_CAM:
 			logging.warning('%s should not be launch renderable!'%(camera))
 			return -1
 
